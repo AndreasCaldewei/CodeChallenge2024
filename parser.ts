@@ -1,22 +1,21 @@
 import * as fs from "fs";
 import * as readline from "readline";
 
-interface Point {
+export interface Point {
   x: number;
   y: number;
   score?: number; // Score is optional, only for Silver Points
 }
 
-interface Tile {
+export interface Tile {
   id: string;
   cost: number;
   available: number;
 }
 
-interface InputData {
+export interface InputData {
   width: number;
   height: number;
-  maxAvailableTiles: number;
   goldenPoints: Point[];
   silverPoints: Point[];
   tiles: Tile[];
@@ -32,7 +31,6 @@ export async function parseInputFile(filePath: string): Promise<InputData> {
   const inputData: InputData = {
     width: 0,
     height: 0,
-    maxAvailableTiles: 0,
     goldenPoints: [],
     silverPoints: [],
     tiles: [],
@@ -50,7 +48,6 @@ export async function parseInputFile(filePath: string): Promise<InputData> {
     if (lineNumber === 1) {
       inputData.width = parseInt(parts[0], 10);
       inputData.height = parseInt(parts[1], 10);
-      inputData.maxAvailableTiles = parseInt(parts[4], 10);
       goldenPointsCount = parseInt(parts[2], 10);
       silverPointsCount = parseInt(parts[3], 10);
       tilesCount = parseInt(parts[4], 10);
